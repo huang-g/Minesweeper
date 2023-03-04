@@ -21,7 +21,7 @@ void setup ()
     }
   }
   
-  for(int i = 0; i < (int)(Math.random()*40) + 0; i++) {
+  for(int i = 0; i < (int)(Math.random()*40) + 120; i++) {
     setMines();
   }
 }
