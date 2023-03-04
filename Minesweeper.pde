@@ -1,4 +1,3 @@
-
 import de.bezier.guido.*;
 
 //Declare and initialize constants NUM_ROWS and NUM_COLS
@@ -35,11 +34,12 @@ public void setMines()
   }
 }
 
-public void draw ()
-{
+public void draw () {
     background(0);
-    if(isWon() == true)
+    if(isWon() == true) {
         displayWinningMessage();
+        gameover = true;
+    }
         
 }
 public boolean isWon()
@@ -94,8 +94,7 @@ public int countMines(int row, int col)
   }
   return numMines;
 }
-public class MSButton
-{
+public class MSButton {
   private int myRow, myCol;
   private float x,y, width, height;
   private boolean clicked, flagged;
@@ -118,9 +117,7 @@ public class MSButton
     if(!gameover) {
       clicked = true;
       if(mouseButton == RIGHT) {
-        if(!flagged) {
-          clicked = false;
-        }
+        clicked = false;
         flagged = !flagged;
       } else if (mines.contains(this)){
         displayLosingMessage();
@@ -166,5 +163,20 @@ public class MSButton
   }
   public boolean isClicked() {
     return clicked;
+  }
+}
+
+public void keyPressed() {
+  if(key == 'r') {
+    gameover = false;
+    for(int i = 0; i < buttons.length; i++) {
+      for(int j = 0; j < buttons[i].length; j++) {
+        buttons[i][j] = new MSButton(i, j);
+      }
+    }
+    mines.clear();
+    for(int i = 0; i < (int)(Math.random()*40) + 0; i++) {
+      setMines();
+    }
   }
 }
